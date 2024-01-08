@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(45, 45, 45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100lvh;
+}
+
+.main-layout {
+    background-color: cadetblue;
+    min-width: 400px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.choose-temperature-scale {
+    margin-bottom: 0.5rem;
+}
+
+.choose-temperature-scale label {
+    font-style: italic;
+}
+
+.choose-temperature-scale select{
+    background-color: black;
+    color: antiquewhite;
+    padding: 0.2rem;
+}
+
+
+.main-search {
+    display: flex;
+    justify-content: center;
+}
+
+.main-search .search-field {
+    background-color: black;
+    border: none;
+    padding:0.5rem;
+    outline: none;
+    color: aquamarine;
+    font-size: 1.3rem;
+}
+
+.main-search .search-field::placeholder {
+    color: blanchedalmond;
+}
+
+.main-search .search-btn {
+   width: 40px;
+   background-color: rgb(0, 151, 196);
+   border: none;
+   border: 1px solid black;
+}
+
+.main-search .search-btn:hover {
+   opacity: 0.8;
+ }
+
+.main-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.main-body-temperature h3 {
+    font-size: 3rem;
+}
+
+.main-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

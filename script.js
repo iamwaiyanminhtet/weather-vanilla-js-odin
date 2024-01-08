@@ -1,3 +1,7 @@
+
+
+let tempScaleMode = '';
+
 // get lan&lon of given city name
 async function getLatLon(name) {
     try {
@@ -10,13 +14,6 @@ async function getLatLon(name) {
     }catch (error) {
         console.log(error);
     }
-}
-
-// get city photo
-async function getCityInfo(id) {
-    const response = await fetch(`https://api.teleport.org/api/cities/geonameid:${id}/`);
-    const data = await response.json();
-    return data;
 }
 
 // get weather data by city name
@@ -40,5 +37,6 @@ async function getWeatherData (name) {
 
 //  img.src = `https://openweathermap.org/img/wn/${v.weather[0].icon}@2x.png`;
 
-getWeatherData('Buffalo').then(v => console.log(v));
-
+getWeatherData('Buffalo').then(data => {
+    console.log(data);
+});
