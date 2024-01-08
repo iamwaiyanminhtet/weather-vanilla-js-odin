@@ -1,6 +1,17 @@
+// main element
+const tempEle = document.querySelector('#temperature');
+const weatherConditionEle = document.querySelector('#weatherCondition');
+const weatherImgEle = document.querySelector('.main-body img');
+const cityEle = document.querySelector('#city');
+const countryEle = document.querySelector('#country');
 
+// search & change temp element
+const searchBtn = document.querySelector('.search-btn');
+const searchValue = document.querySelector('#search-field');
+const tempScaleChange = document.querySelector('#temperature-scale');
 
-let tempScaleMode = '';
+// Global Variables
+let tempScaleMode = 'Default';
 
 // get lan&lon of given city name
 async function getLatLon(name) {
@@ -25,7 +36,7 @@ async function getWeatherData (name) {
     const lon = getCity[0].lon;
 
     // get weatherInfo
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=9b7e10f1bbaa419497f5ad30d54d6503`,{
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${tempScaleMode}&appid=9b7e10f1bbaa419497f5ad30d54d6503`,{
         mode : "cors"
     });
     const data = response.json();
@@ -35,8 +46,41 @@ async function getWeatherData (name) {
    }
 }
 
-//  img.src = `https://openweathermap.org/img/wn/${v.weather[0].icon}@2x.png`;
+function mainDisplay(temp,weatherCondition,icon,city,country) {
+    weatherConditionEle.textContent = weatherCondition;
+    weatherImgEle.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+    cityEle.textContent = city;
+    countryEle.textContent = country;
 
-getWeatherData('Buffalo').then(data => {
-    console.log(data);
+    switch (tempScaleMode) {
+        case 'Default':
+            tempEle.textContent = `${temp} K`
+        break;
+        case 'Metric':
+            tempEle.textContent = `${temp} °C`
+        break;
+        case 'Imperial':
+            tempEle.textContent = `${temp} °F`
+        break;
+    }
+}
+
+// change temperature scale
+tempScaleChange.addEventListener('change', () => {
+    tempScaleMode = tempScaleChange.value;
+});
+
+searchBtn.addEventListener('click', () => {
+    if(!(searchValue === '' || searchValue === null)) {
+        let search = searchValue.value.trim();
+        getWeatherData(search).then(data => {
+            const temp = data.main.temp;
+            const weatherCondition = data.weather[0].main;
+            const icon = data.weather[0].icon;
+            const city = data.name;
+            const country = data.sys.country;
+        
+            mainDisplay(temp,weatherCondition,icon,city,country);
+        });
+    }
 });

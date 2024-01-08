@@ -11,14 +11,14 @@
     <main class="main-layout">
         <div class="choose-temperature-scale">
             <label for="temperature-scale">Choose temp scale before searching : </label>
-            <select name="temperature-scale" id="">
-                <option value="celsius">Celsius</option>
-                <option value="fahrenheit">Fahrenheit</option>
-                <option value="kelvin">Kelvin</option>
+            <select name="temperature-scale" id="temperature-scale">
+                <option value="Metric">Celsius</option>
+                <option value="Imperial">Fahrenheit</option>
+                <option value="Default">Kelvin</option>
             </select>
         </div>
         <form class="main-search">
-                <input type="text" class="search-field" id="" placeholder="Enter a city...">
+                <input type="text" class="search-field" id="search-field" placeholder="Enter a city...">
                 <button type="button" class="search-btn">
                     <img src="./search.svg" alt="search icon">
                 </button>         
@@ -26,14 +26,13 @@
         <div class="main-body">
             <div class="main-body-temperature">
                 <h3>
-                    <span class="temperature">27.11 °C</span> | <span class="weather-condition">Sunny</span>
+                    <span class="temperature" id="temperature">27.11 °C</span> | <span class="weather-condition" id="weatherCondition">Sunny</span>
                 </h3>
             </div>
             <img src="https://openweathermap.org/img/wn/11d@2x.png" alt="">
-            <h2><span>Mandalay</span> , <span>Myanmar</span></h2>
+            <h2><span id="city">Mandalay</span> , <span id="country">MM</span></h2>
         </div>
         <div class="main-footer">
-            
             <a href=""><p>see additional information</p></a>
         </div>
     </main>
