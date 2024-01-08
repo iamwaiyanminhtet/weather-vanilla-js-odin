@@ -17,7 +17,7 @@ let tempScaleMode = 'Metric';
 async function getLatLon(name) {
     try {
         // call to openweatherapi geolocation
-        const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${name}&appid=9b7e10f1bbaa419497f5ad30d54d6503`, {
+        const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${name}&appid=9b7e10f1bbaa419497f5ad30d54d6503`, {
             mode : "cors"
         });
         const data = await response.json();
