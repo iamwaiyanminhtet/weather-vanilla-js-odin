@@ -51,9 +51,9 @@ async function getWeatherData (name) {
 // display in UI
 function mainDisplay(temp,weatherCondition,icon,city,country) {
     weatherConditionEle.textContent = weatherCondition;
-    weatherImgEle.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
     cityEle.textContent = city;
     countryEle.textContent = country;
+    weatherImgEle.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
     switch (tempScaleMode) {
         case 'Default':
@@ -68,6 +68,8 @@ function mainDisplay(temp,weatherCondition,icon,city,country) {
     }
 }
 
+
+
 // fetch data & display data
 function fetchAndDisplayWeather(searchValue) {
     getWeatherData(searchValue).then(data => {
@@ -77,8 +79,9 @@ function fetchAndDisplayWeather(searchValue) {
         const icon = data.weather[0].icon;
         const city = data.name;
         const country = data.sys.country;
-    
+
         mainDisplay(temp,weatherCondition,icon,city,country);
+
     });
 }
 
