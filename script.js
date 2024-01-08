@@ -7,11 +7,11 @@ const countryEle = document.querySelector('#country');
 
 // search & change temp element
 const searchBtn = document.querySelector('.search-btn');
-const searchValue = document.querySelector('#search-field');
+const searchField = document.querySelector('#search-field');
 const tempScaleChange = document.querySelector('#temperature-scale');
 
 // Global Variables
-let tempScaleMode = 'Default';
+let tempScaleMode = 'Metric';
 
 // get lan&lon of given city name
 async function getLatLon(name) {
@@ -46,6 +46,7 @@ async function getWeatherData (name) {
    }
 }
 
+// display in UI
 function mainDisplay(temp,weatherCondition,icon,city,country) {
     weatherConditionEle.textContent = weatherCondition;
     weatherImgEle.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
@@ -65,22 +66,37 @@ function mainDisplay(temp,weatherCondition,icon,city,country) {
     }
 }
 
+// fetch data & display data
+function fetchAndDisplayWeather(searchValue) {
+    getWeatherData(searchValue).then(data => {
+        // covert use-ready value
+        const temp = data.main.temp;
+        const weatherCondition = data.weather[0].main;
+        const icon = data.weather[0].icon;
+        const city = data.name;
+        const country = data.sys.country;
+    
+        mainDisplay(temp,weatherCondition,icon,city,country);
+    });
+}
+
+fetchAndDisplayWeather('Mandalay');
+
 // change temperature scale
 tempScaleChange.addEventListener('change', () => {
     tempScaleMode = tempScaleChange.value;
-});
 
-searchBtn.addEventListener('click', () => {
+    let searchValue = searchField.value.trim();
     if(!(searchValue === '' || searchValue === null)) {
-        let search = searchValue.value.trim();
-        getWeatherData(search).then(data => {
-            const temp = data.main.temp;
-            const weatherCondition = data.weather[0].main;
-            const icon = data.weather[0].icon;
-            const city = data.name;
-            const country = data.sys.country;
-        
-            mainDisplay(temp,weatherCondition,icon,city,country);
-        });
+        fetchAndDisplayWeather(searchValue);
     }
 });
+
+// search btn clicks
+searchBtn.addEventListener('click', () => {
+    let searchValue = searchField.value.trim();
+    if(!(searchValue === '' || searchValue === null)) {
+        fetchAndDisplayWeather(searchValue);
+    }
+});
+

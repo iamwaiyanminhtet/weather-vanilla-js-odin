@@ -84,3 +84,11 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.main-footer a {
+    color: black;
+}
+
+.main-footer a:visited {
+    color: black;
+}
