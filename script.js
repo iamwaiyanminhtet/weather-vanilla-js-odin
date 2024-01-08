@@ -9,9 +9,11 @@ const countryEle = document.querySelector('#country');
 const searchBtn = document.querySelector('.search-btn');
 const searchField = document.querySelector('#search-field');
 const tempScaleChange = document.querySelector('#temperature-scale');
+const body = document.querySelector('body');
 
 // Global Variables
 let tempScaleMode = 'Metric';
+let colors = ['#002147','#3D0C02','#3B3C36','#40826D','#317873','#1B1B1B','#3D2B1F','#1d2d44','#212922','#5D707F'];
 
 // get lan&lon of given city name
 async function getLatLon(name) {
@@ -97,6 +99,20 @@ searchBtn.addEventListener('click', () => {
     let searchValue = searchField.value.trim();
     if(!(searchValue === '' || searchValue === null)) {
         fetchAndDisplayWeather(searchValue);
+        body.style.backgroundColor = colors[Math.floor(Math.random() * 10)];
     }
 });
+
+searchField.addEventListener('keyup', (e) => {
+    if(e.key === 'Enter') {
+        let searchValue = searchField.value.trim();
+        if(!(searchValue === '' || searchValue === null)) {
+            fetchAndDisplayWeather(searchValue);
+            body.style.backgroundColor = colors[Math.floor(Math.random() * 10)];
+        }
+    }
+});
+
+body.style.backgroundColor = colors[Math.floor(Math.random() * 10)];
+
 
